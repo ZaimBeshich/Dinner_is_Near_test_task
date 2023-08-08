@@ -9,6 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import COLORS from '../constants/colors';
+import { Button } from './Button';
 
 export const Container = (props) => {
   return (
@@ -19,6 +20,10 @@ export const Container = (props) => {
       />
       <View style={styles.fakeHeader} />
       {props.children}
+      <View style={styles.navContainer}>
+        <Button title='Назад' onPress={() => console.log('Назад')} />
+        <Button title='Домой' onPress={() => console.log('Домой')} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -34,5 +39,10 @@ const styles = StyleSheet.create({
     width: width,
     height: 20,
     marginVertical: 10,
+  },
+  navContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
 });
