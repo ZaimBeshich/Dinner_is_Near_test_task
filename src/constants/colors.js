@@ -5,6 +5,7 @@ const COLORS = {
   grey_light: '#A9A9A9',
   green: '#5CCA2D',
   greenSecondary: '#65B443',
+  gold: '#FFD700',
   transparent: 'transparent',
 };
 export default COLORS;
