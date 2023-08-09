@@ -10,8 +10,19 @@ import {
 } from 'react-native';
 import COLORS from '../constants/colors';
 import { Button } from './Button';
+import { useNavigation } from '@react-navigation/native';
 
 export const Container = (props) => {
+  const navigation = useNavigation();
+
+  const goBack = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      console.log('go back');
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -21,7 +32,7 @@ export const Container = (props) => {
       <View style={styles.fakeHeader} />
       {props.children}
       <View style={styles.navContainer}>
-        <Button title='Назад' onPress={() => console.log('Назад')} />
+        <Button title='Назад' onPress={goBack} />
         <Button title='Домой' onPress={() => console.log('Домой')} />
       </View>
     </SafeAreaView>
@@ -44,5 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
+    borderTopColor: COLORS.grey_light,
+    borderTopWidth: 1,
   },
 });

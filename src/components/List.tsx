@@ -13,6 +13,7 @@ import { Container } from '../components/Container';
 import { Button } from '../components/Button';
 import COLORS from '../constants/colors';
 import { MOCK_RECIPES } from '../constants/mockStrings';
+import { useNavigation } from '@react-navigation/native';
 
 type receptProps = {
   id: string;
@@ -21,10 +22,16 @@ type receptProps = {
 };
 
 export const List = () => {
+  const navigation = useNavigation<any>();
+
   const renderItem = ({ item }: { item: receptProps }) => {
     return (
       <TouchableOpacity
-        onPress={() => console.log('Navigete to recep')}
+        onPress={() =>
+          navigation.push('Recipe', {
+            item,
+          })
+        }
         style={styles.item}>
         <Image
           source={item.image}
@@ -53,25 +60,23 @@ export const List = () => {
   );
 };
 
-const { width, height } = Dimensions.get('window');
-console.log(width, height);
+const { width } = Dimensions.get('window');
+
+const horizontalMargin = 16;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: 16,
   },
   h1: {
     fontSize: 25,
     textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom: 25,
+    marginBottom: 15,
   },
   itemTitle: {
     color: COLORS.white,
     fontSize: 16,
-    width: width - 105,
-
-    // textAlign: 'center',
+    width: width - width / 3 + horizontalMargin,
   },
   item: {
     flexDirection: 'row',
@@ -81,7 +86,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 10,
     padding: 5,
-    // maxHeight: 60,
   },
   img: {
     borderRadius: 12,
