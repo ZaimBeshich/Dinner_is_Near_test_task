@@ -14,19 +14,15 @@ import { Button } from '../components/Button';
 import COLORS from '../constants/colors';
 import { MOCK_RECIPES } from '../constants/mockStrings';
 import { useNavigation } from '@react-navigation/native';
-
-type receptProps = {
-  id: string;
-  title: string;
-  image: ImageProps;
-};
+import { mockRecipesType } from '../constants/types';
 
 export const List = () => {
   const navigation = useNavigation<any>();
 
-  const renderItem = ({ item }: { item: receptProps }) => {
+  const renderItem = (item: mockRecipesType) => {
     return (
       <TouchableOpacity
+        key={item.id}
         onPress={() =>
           navigation.push('Recipe', {
             item,
@@ -50,18 +46,12 @@ export const List = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>Рецепты</Text>
-      <FlatList
-        data={MOCK_RECIPES}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator={false}
-      />
+      {MOCK_RECIPES.map((el) => renderItem(el))}
     </View>
   );
 };
 
 const { width } = Dimensions.get('window');
-
 const horizontalMargin = 16;
 const styles = StyleSheet.create({
   container: {

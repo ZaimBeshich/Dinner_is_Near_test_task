@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Container } from '../components/Container';
 import { Button } from '../components/Button';
 import { List } from '../components/List';
@@ -9,11 +9,11 @@ import { MOCK_RECIPES } from '../constants/mockStrings';
 export const HomeScreen = () => {
   return (
     <Container>
-      <View style={styles.container}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <Text style={styles.h1}>Твоя формула питания</Text>
         <Ingredients />
         <List />
-      </View>
+      </ScrollView>
     </Container>
   );
 };

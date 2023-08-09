@@ -1,18 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, ViewStyle } from 'react-native';
 import COLORS from '../constants/colors';
+import { ButtonProps } from '../constants/types';
 
-type ButtonProps = {
-  title: string;
-  buttonStyle?: ViewStyle;
-  disabled?: boolean;
-  isLoading?: boolean;
-  onPress: () => void;
-};
-
-export const Button = (props: ButtonProps) => {
-  const { title, disabled, onPress, isLoading, buttonStyle } = props;
-
+export const Button = ({
+  title,
+  disabled,
+  onPress,
+  buttonStyle,
+}: ButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -35,7 +31,7 @@ const styles = StyleSheet.create({
     paddingVertical: 17,
   },
   buttonDisabled: {
-    backgroundColor: COLORS.black,
+    backgroundColor: COLORS.grey_light,
   },
   buttonTitle: {
     color: COLORS.white,
